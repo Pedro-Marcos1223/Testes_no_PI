@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+textarea {
+    resize: none;
+}
+
+.font-family{
+    font-family:'Roboto', monospace;
+}
+
+.temas{
+    font-size: 1.2rem;
+}
+
+.temas ul li a{
+    color: white;
+}
+
+.card-postagem {
+    border-bottom: 1px solid #d75079;    
+}
+
+.card-comentario {
+    border: 1px solid #bdd3eb;
+    border-radius: 5px;
+    margin: 10px;
+    background-color: #dde6ef;
+}
+
+.card-comentario--header {
+    border-bottom: 1px solid #bdd3eb;
+}
+
+.card{
+    border: none !important;
+}

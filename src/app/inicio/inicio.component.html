@@ -1,0 +1,146 @@
+<div class="container-fluid bg-light pt-3 pb-3 font-family min-vh-100">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-2 m-1 p-0 bg-light h-100">
+      <div class="border-black rounded-lg px-3">
+        <div class="d-flex justify-content-center align-items-center mt-3 mb-2"><img src="{{foto}}" height="80px" width="80px"
+          class="border rounded-circle" alt="Foto do usuario">
+        </div>
+        <div class="text-center">
+          <h4 class="fc-amarelo font-weight-bold mb-3">{{nome}}</h4>
+          <p class="text-justify text-dark">{{bio}}</p>
+        </div>
+      </div>
+        <!--! Fazer Nova Postagem-->
+        <div class="text-center">
+          <button type="button" class="btn text-light mt-3 w-75 btn-personalizado" data-toggle="modal" data-target="#NovaPostagem"><i class="bi bi-plus-circle-fill mr-2"></i>Novo Post</button>
+        </div>
+    </div>
+
+    <div class="col-md-7 m-1 border-black text-center rounded-lg px-0">
+      <div class="container mt-3 mb-5 ">
+        <div *ngFor="let postagem of listaPostagem" class="card bg-lightescuro mb-3">
+          <!--Uma postageem  -->
+
+          <div class="d-flex flex-column bg-lightescuro border-rosa rounded-lg p-3">
+
+              <!-- Foto do usuario que fez a postagem-->
+              <div class="d-flex justify-content-between align-items-center p-0 card-postagem pb-3">
+                <div class="d-flex align-items-center">
+                  <img src="{{postagem.usuario.foto}}" height="50px" width="50px" class="border rounded-circle mr-3" alt="Foto do usuario">
+                  <h5 class="fonts-15 pt-0 mb-0 fw-500">{{postagem.usuario.nome}}</h5>
+                </div>
+                <div class="text-right">
+                  <h5 class="fonts-15 mb-1 color-temas">#{{tema.nomeTema}}</h5>
+                  <h6 class="mb-0 fw-300">{{postagem.data | date:'dd/MM/yyyy'}} às {{postagem.data | date:'HH:mm'}}</h6>
+                </div>
+              </div>
+
+
+            <div class="card-body bg-lightescuro">
+              <div class="mb-5">
+                <h2 class="fc-amarelo mb-0 font-weight-bold">{{postagem.titulo}}</h2>
+                <p class="fs-textos">{{postagem.textoPost}}</p>
+              </div>
+              <div class="text-right">
+                <button (click)="getPostagemById(postagem.idPostagem)" data-toggle="modal" data-target="#novoComentario" class="btn btn-info fs-textos">Comentar<i class="bi bi-chat-heart-fill ml-2"></i></button>
+              </div>
+            </div>
+            <div *ngFor="let comentario of postagem.comentarios" class="row card-comentario text-left px-3 pt-3">
+              <!--COmentarios-->
+
+              <div class="col-md-12 d-flex align-items-center justify-content-between px-0 pb-3 card-comentario--header">
+                <div class="d-flex align-items-center">
+                  <img src="{{comentario.usuario.foto}}" alt="" class="border rounded-circle mr-3" width="50px" height="50px">
+                  <h5 class="mb-0 fw-500">{{comentario.usuario.nome}}</h5>
+                </div>
+                <h6 class="mb-0 text-right fw-300">{{comentario.data | date:'dd/MM/yyyy'}} às {{comentario.data | date:'HH:mm'}}</h6>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12 card-comentario--body pt-3">
+                  <p class="fs-textos">{{comentario.texto}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--! Modal Cadastro Postagem-->
+<div class="modal fade" id="NovaPostagem" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="TituloModalCentralizado">Nova Postagem</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <form>
+            <label class="mb-0" for="titulo">Título:</label>
+            <input [(ngModel)]="postagem.titulo" class="form-control" type="text" id="titulo" name="titulo">
+
+            <label class="mb-0 mt-2" for="texto">Texto:</label>
+            <textarea [(ngModel)]="postagem.textoPost" class="form-control" name="texto" id="texto" rows="5"></textarea>
+
+            <label class="mb-0 mt-2" for="tema">Escolha um tema ou <a data-dismiss="modal" routerLink="/temas">Cadastre um novo</a></label>
+            <select class="form-control" name="tema" id="tema" [(ngModel)]="idTema" (change)="findByIdTemas()">
+              <option *ngFor='let tema of listaTemas' value="{{tema.id}}">{{tema.nomeTema}}</option>
+          </select>
+
+            <label class="mb-0 mt-2" for="sensivel">Conteúdo Sensível:</label>
+            <select [(ngModel)]="sensivel" class="custom-select" name="select" id="sensivel" (change)="tipoSensivel($event)">
+              <option value="true">Sim</option>
+              <option selected value="false">Não</option>
+            </select>
+
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button (click)="cadastrarPostagem()" data-dismiss="modal" type="submit" class="btn btn-success">Postar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--! Modal Cadastro Comentario-->
+<div class="modal fade" id="novoComentario" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="TituloModalCentralizado">Novo Comentário</h5>      
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <form>
+            <label class="mb-0" for="texto">Comentário:</label>
+            <textarea [(ngModel)]="comentario.texto" class="form-control" name="texto" id="texto" rows="5"></textarea>
+
+            <label class="mb-0 mt-2" for="">Conteúdo Sensível:</label>
+            <select [(ngModel)]="sensivel" class="custom-select" name="select" id="sensivel" (change)="tipoSensivel($event)">
+              <option value="true">Sim</option>
+              <option selected value="false">Não</option>
+            </select>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button (click)="cadastrarComentario(postagem.idPostagem)" data-dismiss="modal" type="submit" class="btn btn-success">Comentar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="container-fluid bg-escuro vw-100 vh-100 d-flex justify-content-center align-items-center">
+
+    <div class="container fc-dark">
+
+        <div class="row w-100 d-flex justify-content-center  ">
+            <div class="col-md-6">
+                <div class="card1 p-4">
+                    <h1 class="text-center mb-3">Cadastre-se</h1>
+                    <div class="form-group">
+
+                        <label style="margin: 0;" for="inputUsuario">Nome</label>
+                        <input [(ngModel)]="usuario.nome" class="form-control mb-2 form-control-sm" placeholder="Digite seu nome" type="text" id="inputUsuario" name="nome">
+
+                        <label style="margin: 0;" for="inputEmail">E-mail</label>
+                        <input [(ngModel)]="usuario.usuario" class="form-control mb-2 form-control-sm" placeholder="Digite seu e-mail" type="text" id="inputEmail" name="email">
+
+                        <label style="margin: 0;" for="inputFoto">Foto</label>
+                        <input [(ngModel)]="usuario.foto" class="form-control mb-2 form-control-sm" placeholder="Link da foto do perfil" type="text" id="inputFoto" name="foto">
+
+                        <label style="margin: 0;" for="selectPronome">Pronome</label>
+                        <select class="custom-select custom-select-sm mb-2" name="pronome" id="selectPronome" (change)="pronomeUser($event)">
+                            <option selected disabled value="">Escolha seu pronome</option>
+                            <option value="ele/dele">Ele/dele</option>
+                            <option value="ela/dela">Ela/dela</option>
+                            <option value="elu/delu">Elu/delu</option>
+                            <option value="outros">Outros</option>
+                        </select>
+
+                        <label style="margin: 0;" for="inputSenha">Senha</label>
+                        <input (input)='confirmSenha($event)' class="form-control mb-2 form-control-sm" placeholder="Digite sua senha" type="password" id="inputSenha"
+                        name="senha">
+
+                        <label style="margin: 0;" for="inputConfirmSenha">Confiramar Senha</label>
+                        <input [(ngModel)]="usuario.senha" class="form-control mb-2 form-control-sm" placeholder="Confirme sua senha" type="password" id="inputConfirmSenha"
+                        name="confirmSenha">
+
+                        <label style="margin: 0;" for="selectTipoUser">Tipo de usuario</label>
+                        <select class="custom-select custom-select-sm mb-2" name="tipoUser" id="selectTipoUser" (change)="tipoUser($event)">
+                            <option selected disabled value="">Escolha um tipo de usuario</option>
+                            <option value="normal">Padrão</option>
+                            <option value="adm">Administrador</option>
+                        </select>
+
+
+                        <div class="d-flex justify-content-around">
+                            <button routerLink="/login" class="btn btn-amarelo text-light mt-4 w-25">Cancelar</button>
+                            <button class="btn btn-personalizado text-light mt-4 w-25" (click)="cadastrar()">Cadastrar</button>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>

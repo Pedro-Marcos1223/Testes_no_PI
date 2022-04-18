@@ -1,0 +1,94 @@
+body {
+    background-color: #ffffff !important;
+}
+
+.border-black{
+    border: #b8bfc7 solid 1px;
+}
+
+.border-rosa{
+    border: #d75079 solid 1px;
+}
+
+.bg-lightescuro{
+    background-color: #eeeff0 !important;
+}
+
+.btn-personalizado {
+    background-color: #d75079 !important;
+    transition: .3s;
+}
+
+.btn-personalizado:hover {
+    background-color: #a63d5d !important;
+}
+
+.btn-amarelo {
+    background-color: #f0b145 !important;
+}
+
+.btn-amarelo:hover {
+    background-color: #ca8d24 !important;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap');
+
+.font-15{
+    font-size: 15px;
+}
+
+.font-20{
+    font-size: 20px;
+}
+
+.font-30{
+    font-size: 30px;
+}
+
+.fs-textos {
+    font-size: 1.2em !important;
+}
+
+.fw-300 {
+    font-weight: 300;
+}
+
+.fw-500 {
+    font-weight: 500;
+}
+
+.color-temas {
+    color: #08bcd9;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+.font-roboto{
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.fc-dark{
+    color: #29282d;
+}
+.fc-amarelo{
+    color: #d9b26f;
+}
+
+.bg-escuro{
+    background-color: #d75079 !important;
+}
+
+.bg-escuro2{
+    background-color: #9a3251;
+}
+
+.card1 {
+    background-color: #ffffff;
+    border-radius: 30px 0 30px 0;
+    padding: 10px 20px 10px 20px; 
+}
+
+
+
